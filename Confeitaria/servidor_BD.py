@@ -13,7 +13,8 @@ from flask import Flask
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@localhost/confeitaria'
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@localhost/confeitaria'  #root= seu usuario
+                                                                                    
 db=SQLAlchemy(app)
 
 
@@ -38,7 +39,7 @@ def login():
         if not user or not user.verify_password(pwd):
             return render_template('login.html')       
 
-        return render_template('home.html')
+        return render_template('homelogado.html')
 
     return render_template('login.html')
 
@@ -57,7 +58,7 @@ class usuarios(db.Model):
 db.create_all()
 
 
-@app.route("/registro.html", methods=["GET","POST"])
+@app.route("/cadastro.html", methods=["GET","POST"])
 def cadastrar():
     if request.method == "POST":
         email=request.form["txtemail"]
