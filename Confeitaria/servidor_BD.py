@@ -68,8 +68,20 @@ def cadastrar():
         db.session.commit()
     return render_template("registro.html")
 
-
-
+# to arrumando aindas
+class Carrinho (db.Model):
+    _tablename_ = 'Carrinho'
+    idcompra = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    produto=db.Column(db.String(55)) 
+    valor= db.Column(db.String(20))
+    quantidade=db.Column(db.String(20))
+    def _init_(self, produto,valor,quantidade):
+        self.produto=produto
+        self.valor=valor
+        self.quantidade=quantidade
+    
+    def comprando(self,quantidade):
+        pass
 
 
 """
