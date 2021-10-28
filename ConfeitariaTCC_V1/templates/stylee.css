@@ -1,0 +1,92 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+    height: 900px;
+    background-image: url(https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rangoetrago.com.br%2Fprincipais-estadio);
+    background-size: 100%;
+    background-color: rgba(16,16,16,0.5);
+}
+
+#geral{
+    width: 100%;
+    height: 100%;
+}
+
+#topo{
+    width: 100%;
+    height: 20%;
+}
+
+#lado{
+    width: 10%;
+    height: 60%;
+    /*background-color: lightskyblue;*/
+}
+
+#baixo{
+    width: 100%;
+    height: 20%;
+    /*background-color: lime;*/
+}
+
+a{
+	text-decoration: none; /*remove o underline*/
+	color: white;
+	display: block; /*ocupa 100% da area do nav*/
+    padding: 20px 5px;
+    text-align: center;
+}
+a:hover{
+	background-color: rgb(176,224,230);
+	color: black;
+}
+
+
+ul{
+	list-style: none;  /*remove as bolinhas da lista*/
+	top: 70px;
+	position: absolute;
+	width: 100%;
+}
+
+img{
+	width: 40px;
+}
+
+input[type="checkbox"]{
+	display: none;
+}
+
+input[type="checkbox"]:checked ~ nav{
+	transform: translateX(350px);
+}
+
+nav{
+	background-color: rgba(16,16,16,0.5);
+	width: 300px;
+	position: absolute;
+	height: 100%;
+	left: -350px;
+	transition: all 1s;
+}
+
+label{
+	padding: 15px;
+	position: absolute;
+	z-index: 1;
+}
+
+h1{
+    color:grey;
+    text-align: center;
+}
+h2{
+    color:grey;
+    text-align: center;
+    margin-left: 15%;
+}
