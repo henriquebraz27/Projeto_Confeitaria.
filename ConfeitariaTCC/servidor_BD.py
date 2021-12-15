@@ -6,31 +6,31 @@
 from flask import render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-
-
+from decimal import Decimal
 
 
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://root:@localhost/confeitaria'  #root= seu usuario
+app.config['SQLALCHEMY_DATABASE_URI']='mysql+pymysql://admin:*Braz2702@localhost/confeitaria'  #root= seu usuario
                                                                                     
 db=SQLAlchemy(app)
 
-@app.route("/teste.html")
-def testando():
-    return render_template("teste.html")
+@app.route("/carrinho/")
+def carrin():
+    prod = Produtos.query.filter_by(id=2).first()
+    return render_template("carrinho.html")
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/pedidos.html")   
+@app.route("/pedidos/")   
 def ped():
     return render_template("pedidos.html")
 
 
-@app.route('/login.html', methods=['GET', 'POST'])
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
@@ -40,19 +40,24 @@ def login():
 
         if not user or not user.verify_password(pwd):
             #imprimit mensagem de erro
-            return render_template('login.html')       
-
+            return render_template('login.html')
+        
         return render_template('homelogado.html')
         
     
     return render_template('login.html')
 
+
+
+
 class usuarios(db.Model):
-    _tablename_ = 'userss'
+    _tablename_ = 'usuarios'
     idconta = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    email=db.Column(db.String(550)) 
+    nome = db.Column(db.String(20))
+    email=db.Column(db.String(50)) 
     senha = db.Column(db.String(20))
-    def __init__(self,email,senha):
+    def __init__(self,nome,email,senha):
+        self.nome=nome
         self.email=email
         self.senha=(senha)
 
@@ -61,21 +66,35 @@ class usuarios(db.Model):
         
 db.create_all()
 
-
-@app.route("/cadastro.html", methods=["GET","POST"])
+@app.route("/cadastro/", methods=["GET","POST"])
 def cadastrar():
     if request.method == "POST":
+        nome=request.form["txtnome"]
         email=request.form["txtemail"]
         senha=request.form["txtsenha"]
-        a = usuarios(email,senha)
+        a = usuarios(nome,email,senha)
         db.session.add(a)
         db.session.commit()
+        return render_template("homelogado.html")
     return render_template("cadastro.html")
 
-# to arrumando aindas
+
+
 class Carrinho (db.Model):
     _tablename_ = 'Carrinho'
     idcompra = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    data=db.Column(db.String(55)) 
+    valortotal= db.Column(db.String(20))
+    def _init_(self, produto,valor,quantidade):
+        self.produto=produto
+        self.valor=valor
+        self.quantidade=quantidade
+
+
+
+class Produtos (db.Model):
+    _tablename_ = 'Produtos'
+    idproduto = db.Column(db.Integer, primary_key=True, autoincrement=True)
     produto=db.Column(db.String(55)) 
     valor= db.Column(db.String(20))
     quantidade=db.Column(db.String(20))
@@ -83,19 +102,11 @@ class Carrinho (db.Model):
         self.produto=produto
         self.valor=valor
         self.quantidade=quantidade
-    
-    def adicionar(self,produto,valor,quantidade):
-        pass
 
 
-"""
-if __name__ == '__main__':     #IF esse arquivo foi rodado direto,
-                               # não foi chamado como biblioteca
-   app.run(host = 'localhost', port = 5002, debug = True)
-                               #suba um servidor, na porta 5002,
-                               #configuração de debug
-                               #debug: salvar dá reload
-"""
+
+
+db.create_all()
 
 if __name__ == "__main__":
     
