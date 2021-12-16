@@ -1,12 +1,32 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class="card" style="width: 180rem; height: 300px; margin: 120px 0px 170px 100px;">
-  <div class="card-body">
-    <h5 class="card-title">Camydoces agradece a preferencia!</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Obrigada!</h6>
-    <p class="card-text">Pedido realizado! Já estamos preparando seu pedido.</p>
-    <a href="/produtos" class="card-link">Veja nossos produtos</a>
+
+<div class="container-fluid">
+
+  {% if sucesso %}
+  <div class="card mt-5">
+    <div class="card-body">
+      <h5 class="card-title">Camydoces agradece a preferencia!</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Obrigada!</h6>
+      <p class="card-text">Pedido realizado! Já estamos preparando seu pedido.</p>
+      <a href="/produtos" class="card-link">Veja nossos produtos</a>
+    </div>
   </div>
+  {% endif %}
+  
+  {% if error %}
+  <div class="card mt-5">
+    <div class="card-body">
+      <h5 class="card-title">Ops. Ocorreu um erro ao finalizar seu pedido.</h5>
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      <a href="/produtos" class="card-link">Veja nossos produtos e adicione ao seu carrinho</a>
+    </div>
+  </div>
+  {% endif %}
+
 </div>
+
 {% endblock %}

@@ -28,7 +28,12 @@ def index():
 def confirmar():
     pagamento = request.form['pagamento']
     print(pagamento)
-    return render_template('pedido-realizado.html')
+
+    if len(session['myCarrinho']['produtos']) == 0:
+        return render_template('pedido-realizado.html', error='Por favor, você precisa adicionar itens ao seu carrinho antes de finalizar o pedido.')    
+
+    session.pop('myCarrinho')
+    return render_template('pedido-realizado.html', sucesso=True)
 
 @app.route("/carrinho/")
 def carrinho():
@@ -125,6 +130,11 @@ def cadastrar():
     if request.method == "POST":
         nome = request.form["nome"]
         email = request.form["email"]
+        
+        user = Usuarios.query.filter_by(email=email).first()
+        if user:
+            return render_template("cadastro.html", messageError="Usuário já existe!")
+
         senha = request.form["senha"]
         a = Usuarios(nome, email, senha)
         db.session.add(a)
