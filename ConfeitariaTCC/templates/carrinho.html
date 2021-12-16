@@ -85,10 +85,10 @@
                     <td class="text-right">R$ {{ produto.valor }}</td>
                     <td class="text-right">
                       <a class="btn btn-sm danger" href="/carrinho?addItem={{key}}">
-                        +1
+                        +
                       </a>
                       <a class="btn btn-sm danger" href="/carrinho?removeItem={{key}}">
-                        -1
+                        -
                       </a>
                     </td>
                   </tr>
@@ -124,6 +124,16 @@
                       <input type="radio" name="pagamento" value="cartao" class="flat-red" checked=""
                         style="position:relative; opacity: 5;" />
                       Cartão de Débito
+                    </div>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <div class="iradio_flat-red checked" aria-checked="false" aria-disabled="false"
+                      style="position: relative;">
+                      <input type="radio" name="pagamento" value="dinheiro" class="flat-red" checked=""
+                        style="position: relative; opacity: 5;" />
+                      Cartão de Crédito
                     </div>
                   </label>
                 </div>

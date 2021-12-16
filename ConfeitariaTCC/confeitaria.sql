@@ -76,10 +76,6 @@ CREATE TABLE `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`) VALUES
-(1, 'agner', 'agner_esteves@hotmail.com', 'agner'),
-(2, 'agner', 'agner_esteves@hotmail.com', '123'),
-(3, 'agner', 'agner_esteves@hotmail.com', '123');
 
 --
 -- Índices para tabelas despejadas
