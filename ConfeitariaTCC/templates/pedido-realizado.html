@@ -1,53 +1,12 @@
-<!DOCTYPE html>
-<html>
+{% extends "layout.html" %}
 
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <title>Volte sempre!</title>
-</head>
-
-<body>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">CamyDoces</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(Página atual)</span></a>
-        <a class="nav-item nav-link" href="#">Destaques</a>
-        <a class="nav-item nav-link" href="#">Preços</a>
-        <a class="nav-item nav-link disabled" href="#">Desativado</a>
-      </div>
-    </div>
-  </nav>
-
-
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="toast-body">
-      Pedido realizado! Já estamos preparando seu pedido. 
-      <div class="mt-2 pt-2 border-top">
-        <button type="button" class="btn btn-primary btn-sm">Fechar</button>
-      </div>
-    </div>
+{% block body %}
+<div class="card" style="width: 180rem; height: 300px; margin: 120px 0px 170px 100px;">
+  <div class="card-body">
+    <h5 class="card-title">Camydoces agradece a preferencia!</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Obrigada!</h6>
+    <p class="card-text">Pedido realizado! Já estamos preparando seu pedido.</p>
+    <a href="/produtos" class="card-link">Veja nossos produtos</a>
   </div>
-
-  <div class="footer">
-	<footer class="text-center text-white" style="background-color: #f1f1f1;">
 </div>
-
-<!-- Copyright -->
-<div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-	© 2021 Copyright:
-	<a class="text-dark" href="https://mdbootstrap.com/">PinguinsWebsites</a>
-</div>
-<!-- Copyright -->
-</footer>
-</div>
-
-</body>
-
-</html>
+{% endblock %}
